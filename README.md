@@ -1,2 +1,2 @@
 # PoW
-Blockchain Consensus Algorithm program "Proof of Work
+Blockchain Consensus Algorithm program "Proof of Work"
