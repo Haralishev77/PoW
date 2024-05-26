@@ -50,3 +50,10 @@ Show the created block:
 ```sh
 python main.py -bs 1024 -sb
 ```
+
+To test the functions, use the following command:
+
+```sh
+python -m unittest -v test.py
+```
+
