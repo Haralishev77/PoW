@@ -83,11 +83,14 @@ class SHA256:
             self._sha256_block(buffer[:64])
             del buffer[:64]
 
-    def digest(self):
+    def digest(self, data=None):
+        if data:
+            self.reset()
+            self.update(data)
         return b''.join(h.to_bytes(4, byteorder='big') for h in self._h)
 
-    def hexdigest(self):
-        return self.digest().hex()
+    def hexdigest(self, data=None):
+        return self.digest(data).hex()
 
     def reset(self):
         self.__init__()
