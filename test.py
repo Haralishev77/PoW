@@ -2,9 +2,8 @@ from SHA256.sha256 import SHA256
 from MerkleTree.MerkleTree import MerkleTree
 from hashlib import sha256
 import unittest
-from test_sha256.testcases import TEST1, TEST2, TEST3, TEST4, TEST5, \
-    TEST6, TEST7, TEST8, TEST9, TEST10, \
-    TEST11, TEST12, TEST13
+from testcases.testcases import TEST1, TEST2, TEST3, TEST4, TEST5,\
+                                TEST6, TEST7, TEST8, TEST9, TEST10
 
 
 class TestSHA256(unittest.TestCase):
