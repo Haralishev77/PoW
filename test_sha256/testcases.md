@@ -40,16 +40,4 @@ f4d62ddec0f3dd90ea1380fa16a5ff8dc4c54b21740650f24afc4120903552b0
 1000000 bytes of zeros
 d29751f2649b32ff572b5e0a9f541ea660a50f94ff0beedfb0b692b924cc8025
 
-# Test 11
-0x20000000 (536870912) bytes of 0x5a ‘Z’
-15a1868c12cc53951e182344277447cd0979536badcc512ad24c67e9b2d4f3dd
-
-# Test 12
-0x41000000 (1090519040) bytes of zeros
-461c19a93bd4344f9215f5ec64357090342bc66b15a148317d276e31cbc20b53
-
-# Test 13
-0x6000003e (1610612798) bytes of 0x42 ‘B’
-c23ce8a7895f4b21ec0daf37920ac0a262a220045a03eb2dfed48ef9b05aabea
-
 [Source of tests](https://csrc.nist.gov/CSRC/media/Projects/Cryptographic-Standards-and-Guidelines/documents/examples/SHA2_Additional.pdf)

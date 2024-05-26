@@ -1,4 +1,5 @@
 from SHA256.sha256 import SHA256
+from MerkleTree.MerkleTree import MerkleTree
 from hashlib import sha256
 import unittest
 from test_sha256.testcases import TEST1, TEST2, TEST3, TEST4, TEST5, \
@@ -66,20 +67,49 @@ class TestSHA256(unittest.TestCase):
         self.sha256_hash_custom.update(TEST10)
         self.assertEqual(self.sha256_hash_custom.hexdigest(), self.sha256_hash.hexdigest())
 
-    # def test11(self):
-    #     self.sha256_hash.update(TEST11)
-    #     self.sha256_hash_custom.update(TEST11)
-    #     self.assertEqual(self.sha256_hash_custom.hexdigest(), self.sha256_hash.hexdigest())
 
-    # def test12(self):
-    #     self.sha256_hash.update(TEST12)
-    #     self.sha256_hash_custom.update(TEST12)
-    #     self.assertEqual(self.sha256_hash_custom.hexdigest(), self.sha256_hash.hexdigest())
-    #
-    # def test13(self):
-    #     self.sha256_hash.update(TEST13)
-    #     self.sha256_hash_custom.update(TEST13)
-    #     self.assertEqual(self.sha256_hash_custom.hexdigest(), self.sha256_hash.hexdigest())
+class TestMerkleTree(unittest.TestCase):
+
+    def setUp(self):
+        self.data_list = [bytes([0xbd]), bytes([0xdd]), bytes([0xad]), bytes([0xcd]), bytes([0x00])]
+        self.hash_list = [sha256(data).digest() for data in self.data_list]
+        self.hash_function = SHA256()
+
+    def test_build_tree(self):
+        merkle_tree = MerkleTree(self.data_list, self.hash_function)
+        self.assertIsNotNone(merkle_tree.tree)
+        self.assertEqual(len(merkle_tree.tree), 4)
+
+    def test_get_root(self):
+        merkle_tree = MerkleTree(self.data_list, self.hash_function)
+        root_hash = merkle_tree.get_root()
+        expected_root_hash = sha256(sha256(self.hash_list[0]+ self.hash_list[1]).digest() +
+                                    sha256(self.hash_list[2] + self.hash_list[3]).digest()
+                                    ).digest() + self.hash_list[4]
+        self.assertEqual(root_hash, sha256(expected_root_hash).digest())
+
+    def test_get_proof(self):
+        merkle_tree = MerkleTree(self.data_list, self.hash_function)
+        proof_data2 = merkle_tree.get_proof(1)
+        self.assertEqual(len(proof_data2), 3)
+
+        expected_proof_data2 = [
+            self.hash_list[0],
+            sha256(self.hash_list[2] + self.hash_list[3]).digest(),
+            self.hash_list[4]
+        ]
+        self.assertEqual(proof_data2, expected_proof_data2)
+
+    def test_verify_proof(self):
+        merkle_tree = MerkleTree(self.data_list, self.hash_function)
+        target_hash = self.hash_list[1]
+        proof_data2 = [
+            self.hash_list[0],
+            sha256(self.hash_list[2] + self.hash_list[3]).digest(),
+            self.hash_list[4]
+        ]
+        root_hash = merkle_tree.get_root()
+        self.assertTrue(merkle_tree.verify_proof(proof_data2, target_hash, root_hash, 1))
 
 
 if __name__ == "__main__":
