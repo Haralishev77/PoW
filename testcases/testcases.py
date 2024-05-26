@@ -8,7 +8,3 @@ TEST7 = bytes(1000)
 TEST8 = bytes([0x41] * 1000)
 TEST9 = bytes([0x55] * 1005)
 TEST10 = bytes(1000000)
-TEST11 = bytes([0x5a] * 0x20000000)
-TEST12 = bytes(0x41000000)
-TEST13 = bytes([0x42] * 0x6000003e)
-

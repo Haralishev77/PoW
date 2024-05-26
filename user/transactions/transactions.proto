@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+package Transactions;
+
+message Transactions {
+    repeated bytes user_transaction = 1;
+}

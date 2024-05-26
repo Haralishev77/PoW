@@ -1,0 +1,11 @@
+syntax = "proto3";
+
+package BlockHeader;
+
+message BlockHeader {
+    uint32 block_size = 1;
+    bytes previous_block_hash = 2;
+    bytes merkle_root_hash = 3;
+    uint32 timestamp = 4;
+    uint32 nonce = 5;
+}
