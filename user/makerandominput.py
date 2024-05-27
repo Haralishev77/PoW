@@ -1,6 +1,8 @@
 import os
 import user.transactions.transactions_pb2 as transactions_pb2
 
+
+# Функция генерации рандомных транзацкий
 def generate_random_226_bits():
     user_data = transactions_pb2.Transactions()
     for _ in range(4):
@@ -12,6 +14,7 @@ def generate_random_226_bits():
         f.write(serialized_data)
 
 
+# Функция чтения транзакций
 def read_data_from_file():
     with open('user/input.proto', 'rb') as f:
         serialized_data = f.read()
@@ -21,6 +24,7 @@ def read_data_from_file():
     data_array = list(user_data.user_transaction)
 
     return data_array
+
 
 if __name__ == "__main__":
     generate_random_226_bits()

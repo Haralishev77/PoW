@@ -15,12 +15,12 @@ def main():
     parser.add_argument('-n', '--nonce', type=int, help='Nonce')
     parser.add_argument('-t', '--timestamp', type=int, help='Метка времени')
     parser.add_argument('-gt', '--generate_transactions', action='store_true', help='Сгенерировать транзакции пользователя')
-    parser.add_argument('-pow', '--proof_of_work', action='store_true', help='Будет искать такой nonce, чтобы первые 4 байта хэша равнялись 0')
+    parser.add_argument('-pow', '--proof_of_work', action='store_true', help='Будет искать такой nonce, чтобы первые 4 символа хэша равнялись 0')
     parser.add_argument('-sb', '--showblock', action='store_true', help='Показать полученный блок')
     
     args = parser.parse_args()
 
-    block_size = args.block_size if args.block_size else 0
+    block_size = args.block_size if args.block_size else 1024
     nonce = args.nonce if args.nonce else 0
     timestamp = args.timestamp if args.timestamp else int(time.time())
 
