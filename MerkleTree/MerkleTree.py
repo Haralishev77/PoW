@@ -17,8 +17,7 @@ class MerkleTree:
         # Строим дерево
         self.tree = self._build_tree(self.leaves)
 
-        # Функция построения дерева
-
+    # Функция построения дерева
     def _build_tree(self, leaves):
         tree = [leaves]
         while len(tree[-1]) > 1:
