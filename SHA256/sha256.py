@@ -21,30 +21,39 @@ class SHA256:
             0x748f82ee, 0x78a5636f, 0x84c87814, 0x8cc70208, 0x90befffa, 0xa4506ceb, 0xbef9a3f7, 0xc67178f2
         ]
 
+    # Функция ROTR
     def _rotr(self, x, n):
         return (x >> n) | (x << (32 - n)) & 0xffffffff
 
+    # Функция SHR
     def _shr(self, x, n):
         return (x >> n) & 0xffffffff
 
+    # Функция Ch
     def _ch(self, x, y, z):
         return (x & y) ^ (~x & z)
 
+    # Функция Maj
     def _maj(self, x, y, z):
         return (x & y) ^ (x & z) ^ (y & z)
 
+    # Функция Sigma0
     def _sigma_big_0(self, x):
         return self._rotr(x, 2) ^ self._rotr(x, 13) ^ self._rotr(x, 22)
 
+    # Функция Sigma1
     def _sigma_big_1(self, x):
         return self._rotr(x, 6) ^ self._rotr(x, 11) ^ self._rotr(x, 25)
 
+    # Функция sigma0
     def _sigma_small_0(self, x):
         return self._rotr(x, 7) ^ self._rotr(x, 18) ^ self._shr(x, 3)
 
+    # Функция sigma1
     def _sigma_small_1(self, x):
         return self._rotr(x, 17) ^ self._rotr(x, 19) ^ self._shr(x, 10)
 
+    # Функция хеширования блока
     def _sha256_block(self, chunk):
         # Шаг 1
         w = [0] * 64
@@ -73,6 +82,7 @@ class SHA256:
         # Шаг 4
         self._h = [(x + y) & 0xffffffff for x, y in zip(self._h, [a, b, c, d, e, f, g, h])]
 
+    # Функция обновления
     def update(self, data):
         buffer = bytearray(data)
         padding_length = (55 - len(data) % 64) if (len(data) % 64) < 56 else (119 - len(data) % 64)
@@ -83,14 +93,17 @@ class SHA256:
             self._sha256_block(buffer[:64])
             del buffer[:64]
 
+    # Функция возврата хэша
     def digest(self, data=None):
         if data:
             self.reset()
             self.update(data)
         return b''.join(h.to_bytes(4, byteorder='big') for h in self._h)
 
+    # Функция возврата хэша в шестнадцатеричной системе счисления
     def hexdigest(self, data=None):
         return self.digest(data).hex()
 
+    # Функция сброса значений
     def reset(self):
         self.__init__()

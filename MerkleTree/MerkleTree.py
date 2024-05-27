@@ -4,20 +4,21 @@ from math import log2, ceil
 class MerkleTree:
     def __init__(self, data_list, hash_function):
         self.hash_function = hash_function
-        self.leaves = [] 
+        self.leaves = []
 
         # Заполняем листья
         for data in data_list:
-            self.leaves.append(self.hash_function.digest(data)) 
+            self.leaves.append(self.hash_function.digest(data))
 
         # Дополняем пустыми элементами до 2^n
-        while len(self.leaves) != 2 ** ceil(log2(len(data_list))): 
-            self.leaves.append(None) 
+        while len(self.leaves) != 2 ** ceil(log2(len(data_list))):
+            self.leaves.append(None)
 
         # Строим дерево
-        self.tree = self._build_tree(self.leaves) 
+        self.tree = self._build_tree(self.leaves)
 
-    # Функция построения дерева
+        # Функция построения дерева
+
     def _build_tree(self, leaves):
         tree = [leaves]
         while len(tree[-1]) > 1:
@@ -29,20 +30,20 @@ class MerkleTree:
                     combined_hash = self.hash_function.digest(current_level[i] + current_level[i + 1])
                 # Записываем в узел None, если дети None 
                 elif current_level[i] == None and current_level[i + 1] == None:
-                    combined_hash = None 
+                    combined_hash = None
                 # Записываем в узел ребенка, если второй None
                 else:
-                    combined_hash = current_level[i] 
+                    combined_hash = current_level[i]
                 next_level.append(combined_hash)
-            tree.append(next_level) 
+            tree.append(next_level)
         return tree
 
     # Функция возврата корня дерева
     def get_root(self):
         return self.tree[-1][0] if self.tree else None
-    
+
     # Функция возврата массива из элементов с которыми был сделан хэш
-    def get_proof(self, index): 
+    def get_proof(self, index):
         proof = []
         for level in range(len(self.tree) - 1):
             level_nodes = self.tree[level]

@@ -2,8 +2,8 @@ from SHA256.sha256 import SHA256
 from MerkleTree.MerkleTree import MerkleTree
 from hashlib import sha256
 import unittest
-from testcases.testcases import TEST1, TEST2, TEST3, TEST4, TEST5,\
-                                TEST6, TEST7, TEST8, TEST9, TEST10
+from testcases.testcases import TEST1, TEST2, TEST3, TEST4, TEST5, \
+    TEST6, TEST7, TEST8, TEST9, TEST10
 
 
 class TestSHA256(unittest.TestCase):
@@ -82,7 +82,7 @@ class TestMerkleTree(unittest.TestCase):
     def test_get_root(self):
         merkle_tree = MerkleTree(self.data_list, self.hash_function)
         root_hash = merkle_tree.get_root()
-        expected_root_hash = sha256(sha256(self.hash_list[0]+ self.hash_list[1]).digest() +
+        expected_root_hash = sha256(sha256(self.hash_list[0] + self.hash_list[1]).digest() +
                                     sha256(self.hash_list[2] + self.hash_list[3]).digest()
                                     ).digest() + self.hash_list[4]
         self.assertEqual(root_hash, sha256(expected_root_hash).digest())
