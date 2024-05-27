@@ -28,7 +28,7 @@ python main.py [options]
 - `-n`, `--nonce`: Nonce value for the block.
 - `-t`, `--timestamp`: Timestamp for the block.
 - `-gt`, `--generate_transactions`: Generate random user transactions.
-- `-pow`, `--proof_of_work`: Perform the proof of work to find a nonce such that the first 4 bytes of the hash are 0.
+- `-pow`, `--proof_of_work`: Perform the proof of work to find a nonce such that the first 4 symbols of the hash are 0.
 - `-sb`, `--showblock`: Display the generated block.
 
 ### Example Commands
