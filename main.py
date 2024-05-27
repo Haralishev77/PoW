@@ -9,15 +9,18 @@ from user.block.makeblock import create_block, write_block_to_file, read_block_f
 from user.makerandominput import read_data_from_file, generate_random_226_bits
 from termcolor import cprint
 
+
 def main():
     parser = argparse.ArgumentParser(description='Парсер для пользовательского ввода')
     parser.add_argument('-bs', '--block_size', type=int, help='Размер блока в байтах')
     parser.add_argument('-n', '--nonce', type=int, help='Nonce')
     parser.add_argument('-t', '--timestamp', type=int, help='Метка времени')
-    parser.add_argument('-gt', '--generate_transactions', action='store_true', help='Сгенерировать транзакции пользователя')
-    parser.add_argument('-pow', '--proof_of_work', action='store_true', help='Будет искать такой nonce, чтобы первые 4 символа хэша равнялись 0')
+    parser.add_argument('-gt', '--generate_transactions', action='store_true',
+                        help='Сгенерировать транзакции пользователя')
+    parser.add_argument('-pow', '--proof_of_work', action='store_true',
+                        help='Будет искать такой nonce, чтобы первые 4 символа хэша равнялись 0')
     parser.add_argument('-sb', '--showblock', action='store_true', help='Показать полученный блок')
-    
+
     args = parser.parse_args()
 
     block_size = args.block_size if args.block_size else 1024
@@ -33,7 +36,7 @@ def main():
     merkle_root_hash = MerkleTree(data, SHA256()).get_root()
 
     if args.proof_of_work:
-        for nonce in range(100**100):
+        for nonce in range(100 ** 100):
             block_header = create_block_header(block_size, previous_block_hash, merkle_root_hash, nonce, timestamp)
             serialized_block_header = block_header.SerializeToString()
             hash = SHA256().hexdigest(serialized_block_header)
@@ -61,10 +64,11 @@ def main():
     cprint(f"Хэш заголовка блока: {SHA256().hexdigest(serialized_block_header)}", "green")
 
     write_block_to_file(create_block(block_size, previous_block_hash, merkle_root_hash, timestamp, nonce, data))
-    
+
     if args.showblock:
         print("\n")
         print(read_block_from_file())
+
 
 if __name__ == "__main__":
     main()

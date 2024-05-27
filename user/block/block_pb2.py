@@ -9,6 +9,7 @@ from google.protobuf import descriptor_pool as _descriptor_pool
 from google.protobuf import runtime_version as _runtime_version
 from google.protobuf import symbol_database as _symbol_database
 from google.protobuf.internal import builder as _builder
+
 _runtime_version.ValidateProtobufRuntimeVersion(
     _runtime_version.Domain.PUBLIC,
     5,
@@ -21,20 +22,18 @@ _runtime_version.ValidateProtobufRuntimeVersion(
 
 _sym_db = _symbol_database.Default()
 
-
-
-
-DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(b'\n\x16user/block/block.proto\x12\x05\x42lock\"[\n\x05\x42lock\x12\'\n\x0b\x42lockHeader\x18\x01 \x01(\x0b\x32\x12.Block.BlockHeader\x12)\n\x0cTransactions\x18\x02 \x01(\x0b\x32\x13.Block.Transactions\"z\n\x0b\x42lockHeader\x12\x12\n\nblock_size\x18\x01 \x01(\r\x12\x1b\n\x13previous_block_hash\x18\x02 \x01(\x0c\x12\x18\n\x10merkle_root_hash\x18\x03 \x01(\x0c\x12\x11\n\ttimestamp\x18\x04 \x01(\r\x12\r\n\x05nonce\x18\x05 \x01(\r\"(\n\x0cTransactions\x12\x18\n\x10user_transaction\x18\x01 \x03(\x0c\x62\x06proto3')
+DESCRIPTOR = _descriptor_pool.Default().AddSerializedFile(
+    b'\n\x16user/block/block.proto\x12\x05\x42lock\"[\n\x05\x42lock\x12\'\n\x0b\x42lockHeader\x18\x01 \x01(\x0b\x32\x12.Block.BlockHeader\x12)\n\x0cTransactions\x18\x02 \x01(\x0b\x32\x13.Block.Transactions\"z\n\x0b\x42lockHeader\x12\x12\n\nblock_size\x18\x01 \x01(\r\x12\x1b\n\x13previous_block_hash\x18\x02 \x01(\x0c\x12\x18\n\x10merkle_root_hash\x18\x03 \x01(\x0c\x12\x11\n\ttimestamp\x18\x04 \x01(\r\x12\r\n\x05nonce\x18\x05 \x01(\r\"(\n\x0cTransactions\x12\x18\n\x10user_transaction\x18\x01 \x03(\x0c\x62\x06proto3')
 
 _globals = globals()
 _builder.BuildMessageAndEnumDescriptors(DESCRIPTOR, _globals)
 _builder.BuildTopDescriptorsAndMessages(DESCRIPTOR, 'user.block.block_pb2', _globals)
 if not _descriptor._USE_C_DESCRIPTORS:
-  DESCRIPTOR._loaded_options = None
-  _globals['_BLOCK']._serialized_start=33
-  _globals['_BLOCK']._serialized_end=124
-  _globals['_BLOCKHEADER']._serialized_start=126
-  _globals['_BLOCKHEADER']._serialized_end=248
-  _globals['_TRANSACTIONS']._serialized_start=250
-  _globals['_TRANSACTIONS']._serialized_end=290
+    DESCRIPTOR._loaded_options = None
+    _globals['_BLOCK']._serialized_start = 33
+    _globals['_BLOCK']._serialized_end = 124
+    _globals['_BLOCKHEADER']._serialized_start = 126
+    _globals['_BLOCKHEADER']._serialized_end = 248
+    _globals['_TRANSACTIONS']._serialized_start = 250
+    _globals['_TRANSACTIONS']._serialized_end = 290
 # @@protoc_insertion_point(module_scope)
