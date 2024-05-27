@@ -160,5 +160,5 @@ cython_debug/
 #.idea/
 
 # user
-input.proto
-output.proto
+user/input.proto
+user/output.proto
